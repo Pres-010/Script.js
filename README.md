@@ -1,0 +1,2 @@
+# Script.js
+JavaScript repository
