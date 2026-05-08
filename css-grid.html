@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid</title>
+
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            grid-template-rows: repeat(3,1fr);
+            gap: 20px;
+            justify-items: center;
+            align-items: center;
+            height: 600px;
+        }
+        .child {
+            padding: 40px 60px;
+            text-align: center;
+
+           
+        }
+        .child:nth-child(1) {
+            background: teal;
+        }
+        .child:nth-child(2) {
+            background: darkorchid;
+        }
+        .child:nth-child(3) {
+           
+            background: rgb(21, 128, 0);
+        }
+        .child:nth-child(4) {
+           
+            background: rgb(221, 8, 8);
+        }
+        .child:nth-child(5) {
+          
+            background: rgb(175, 210, 210);
+        }
+        .child:nth-child(6) {
+          
+            background: rgb(244, 204, 3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child">Item 1</div>
+        <div class="child">Item 2</div>
+        <div class="child">Item 3</div>
+        <div class="child">Item 4</div>
+        <div class="child">Item 5</div>
+        <div class="child">Item 6</div>
+    </div>
+</body>
+</html>
