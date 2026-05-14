@@ -1,9 +1,10 @@
 const todoInput = document.getElementById("todoInput");
 const addBtn = document.getElementById("addBtn");
 const todoList = document.getElementById("todoList");
-const Container = document.querySelector('.container')
 
-addBtn.addEventListener("click", function addTask() {
+addBtn.addEventListener("click", addTask);
+
+function addTask() {
 
   const taskText = todoInput.value;
 
@@ -14,42 +15,64 @@ addBtn.addEventListener("click", function addTask() {
 
   // Create li
   const li = document.createElement("li");
-  li.classList.add('li')
-  // Create task text
-  li.innerHTML = `
-    ${taskText}
-    <span class='edit'>Edit</span>
-    <span class="delete-btn">Delete</span>
-  `;
+  li.classList.add("li");
 
-  // Add to list
-  todoList.appendChild(li)
+  // Task text
+  const taskSpan = document.createElement("span");
+  taskSpan.innerText = taskText;
+
+  // Edit button
+  const editBtn = document.createElement("button");
+  editBtn.innerText = "Edit";
+
+  // Delete button
+  const deleteBtn = document.createElement("button");
+  deleteBtn.innerText = "Delete";
+  deleteBtn.classList.add("delete-btn");
+
+  // Add elements inside li
+  li.appendChild(taskSpan);
+  li.appendChild(editBtn);
+  li.appendChild(deleteBtn);
+
+  // Add li to ul
+  todoList.appendChild(li);
 
   // Clear input
   todoInput.value = "";
 
-  // Delete functionality
-  const deleteBtn = li.querySelector(".delete-btn");
-
-  deleteBtn.addEventListener("click", function remove() {
-    todoList.removeChild(li)
+  // DELETE
+  deleteBtn.addEventListener("click", function () {
+    todoList.removeChild(li);
   });
 
-  // Edit functionality
-  const editBtn = li.querySelector(".edit")
- const editInput = document.createElement('input')
- editInput.classList.add('edit-input')
-  editBtn.addEventListener('click', function () {
-  todoList.appendChild(editInput)
-  })
+  // EDIT
+  editBtn.addEventListener("click", function () {
 
-  const changeBtn = document.createElement('button')
-  changeBtn.innerHTML = "✔️"
-  Container.appendChild(changeBtn)
-  changeBtn.addEventListener('click', function () {
-    let EditedText = editInput.value
-    li.innerHTML = ` ${EditedText}
-    <span class='edit'>Edit</span>
-    <span class="delete-btn">Delete</span>`
-  })
-});
+    // Create input
+    const editInput = document.createElement("input");
+    editInput.value = taskSpan.innerText;
+
+    // Create save button
+    const saveBtn = document.createElement("button");
+    saveBtn.innerText = "✔️";
+
+    // Replace task text with input
+    li.replaceChild(editInput, taskSpan);
+
+    // Add save button
+    li.insertBefore(saveBtn, deleteBtn);
+
+    // Save edited text
+    saveBtn.addEventListener("click", function () {
+
+      taskSpan.innerText = editInput.value;
+
+      // Restore task text
+      li.replaceChild(taskSpan, editInput);
+
+      // Remove save button
+      li.removeChild(saveBtn);
+    });
+  });
+}
