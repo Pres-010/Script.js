@@ -1,26 +1,23 @@
 * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
 body {
-  background: #f4f6f8;
+  background: #f4f4f4;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
   padding-top: 60px;
 }
 
 .container {
   background: white;
-  padding: 20px;
+  width: 400px;
+  padding: 25px;
   border-radius: 12px;
-  width: 350px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 h1 {
@@ -28,70 +25,63 @@ h1 {
   margin-bottom: 20px;
 }
 
-.input-group {
+.input-area {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
 input {
   flex: 1;
   padding: 10px;
-  border-radius: 8px;
   border: 1px solid #ccc;
-  outline: none;
+  border-radius: 8px;
 }
 
 button {
   padding: 10px 15px;
   border: none;
-  background: #4f46e5;
+  background: black;
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 button:hover {
-  background: #4338ca;
+  opacity: 0.8;
 }
 
-#taskdiv {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+ul {
+  margin-top: 20px;
+  list-style: none;
 }
 
-.task {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #f9fafb;
-  padding: 10px;
+.li {
+  background: #eee;
+  padding: 12px;
   border-radius: 8px;
-  transition: 0.2s;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.task:hover {
-  background: #eef2ff;
+.delete-btn {
+  background: crimson;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
 }
-
-.task span {
+.edit {
+  background: #007bff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+.edit-input {
   flex: 1;
-  margin-left: 10px;
-}
-
-.completed span {
-  text-decoration: line-through;
-  color: gray;
-}
-
-.task button {
-  background: #ef4444;
-  padding: 5px 10px;
-  font-size: 12px;
-}
-
-.task button:hover {
-  background: #dc2626;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }

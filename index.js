@@ -1,43 +1,55 @@
-function addTask() {
-      const taskInput = document.getElementById('taskInput');
-      const taskText = taskInput.value.trim();
-      if (taskText === '') return;
+const todoInput = document.getElementById("todoInput");
+const addBtn = document.getElementById("addBtn");
+const todoList = document.getElementById("todoList");
+const Container = document.querySelector('.container')
 
-      const taskDiv = document.createElement('div');
-      taskDiv.classList.add('task');
+addBtn.addEventListener("click", function addTask() {
 
-      const textSpan = document.createElement('span');
-      textSpan.textContent = taskText;
+  const taskText = todoInput.value;
 
-      taskDiv.onclick = function() {
-        this.classList.toggle('completed');
-        Taskcheckbox.checked = this.classList.contains('completed');
-      };
+  if (taskText === "") {
+    alert("Please enter a task");
+    return;
+  }
 
-      deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete';
-      deleteButton.type = 'button';
+  // Create li
+  const li = document.createElement("li");
+  li.classList.add('li')
+  // Create task text
+  li.innerHTML = `
+    ${taskText}
+    <span class='edit'>Edit</span>
+    <span class="delete-btn">Delete</span>
+  `;
 
-      deleteButton.onclick = function(e) {
-        e.stopPropagation();
-        this.parentElement.remove();
-      };
+  // Add to list
+  todoList.appendChild(li)
 
-      Taskcheckbox = document.createElement('input');
-      Taskcheckbox.type = 'checkbox';
+  // Clear input
+  todoInput.value = "";
 
-      Taskcheckbox.onclick = function(e) {
-        e.stopPropagation();
-        taskDiv.classList.toggle('completed');
-        this.checked = taskDiv.classList.contains('completed');
-      };
+  // Delete functionality
+  const deleteBtn = li.querySelector(".delete-btn");
 
-      taskDiv.appendChild(Taskcheckbox);
-      taskDiv.appendChild(textSpan);
-      taskDiv.appendChild(deleteButton);
+  deleteBtn.addEventListener("click", function remove() {
+    todoList.removeChild(li)
+  });
 
-      document.getElementById('taskdiv').appendChild(taskDiv);
+  // Edit functionality
+  const editBtn = li.querySelector(".edit")
+ const editInput = document.createElement('input')
+ editInput.classList.add('edit-input')
+  editBtn.addEventListener('click', function () {
+  todoList.appendChild(editInput)
+  })
 
-      taskInput.value = '';
-      taskInput.focus();
-    }
+  const changeBtn = document.createElement('button')
+  changeBtn.innerHTML = "✔️"
+  Container.appendChild(changeBtn)
+  changeBtn.addEventListener('click', function () {
+    let EditedText = editInput.value
+    li.innerHTML = ` ${EditedText}
+    <span class='edit'>Edit</span>
+    <span class="delete-btn">Delete</span>`
+  })
+});
